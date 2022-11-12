@@ -31,7 +31,7 @@ class Category:
         return string_to_print
 
 
-    def deposit(self, amount, description=""):
+    def deposit(self, amount: float, description=""):
         """
         A deposit method that accepts an amount and description. If no description is given, 
         it should default to an empty string. The method should append an object to the ledger 
@@ -39,15 +39,10 @@ class Category:
         """
         self.amount = amount
         self.description = description
-        try:
-            amount = float(amount)
-        except:
-            print("ERROR: amount should be a number")
-            exit()
         self.ledger.append({'amount': amount, 'description': description})
 
 
-    def withdraw(self, amount, description=""):
+    def withdraw(self, amount: float, description=""):
         """
         A withdraw method that is similar to the deposit method, but the amount passed in should 
         be stored in the ledger as a negative number. If there are not enough funds, nothing should 
@@ -55,11 +50,6 @@ class Category:
         """
         self.amount = amount
         self.description = description
-        try:
-            amount = float(amount)
-        except:
-            print("ERROR: amount should be a number")
-            exit()
         if self.check_funds(amount):
             self.ledger.append({'amount': -abs(amount), 'description': description})
             return True
@@ -78,7 +68,7 @@ class Category:
         return balance
 
 
-    def transfer(self, amount, category):
+    def transfer(self, amount:float, category):
         """
         A transfer method that accepts an amount and another budget category as arguments. 
         The method should add a withdrawal with the amount and the description "Transfer to 
@@ -96,7 +86,7 @@ class Category:
             return False
 
 
-    def check_funds(self, amount):
+    def check_funds(self, amount: float):
         """
         A check_funds method that accepts an amount as an argument. It returns False if the 
         amount is greater than the balance of the budget category and returns True otherwise. 
