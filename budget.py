@@ -25,8 +25,11 @@ class Category:
         for element in self.ledger:
             description = element["description"][:23]
             len_description = len(description)
-            spaces = ((23 - len_description) * " ") + " "
-            string_to_print += description + spaces + str("%.2f" % round(element["amount"], 2)).rjust(6) + "\n"
+            spaces = ((23 - len_description) * " ")
+            cat_amount = "%.2f" % round(element["amount"], 2)
+            if len(cat_amount) < 7:
+                spaces += " "
+            string_to_print += description + spaces + str(cat_amount).rjust(6) + "\n"
         string_to_print += "Total: " + str(self.get_balance())
         return string_to_print
 
